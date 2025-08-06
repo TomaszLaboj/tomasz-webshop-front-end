@@ -1,10 +1,13 @@
-
+import { Heading } from "@chakra-ui/react"
 import './App.css'
-
+import SearchBar from "./components/SearchBar";
 function App() {
 
   return (
-    <>hello</>
+      <>
+        <Heading size="2xl" letterSpacing="wide">Tomasz's Webshop</Heading>
+        <SearchBar />
+      </>
   )
 }
 
