@@ -1,0 +1,23 @@
+{
+  "name": "White Bread",
+  "image": "https://tse1.mm.bing.net/th/id/OIP.xtXeZeBA_jryW1B371d0awHaE6?cb=thfc1&pid=Api",
+  "categoryPath": "bakery/bread/white_bread",
+  "measure": {
+    "typeOfMeasure": "weight",
+    "count": 800,
+    "unitOfMeasure": "gram"
+  },
+  "shelfLife": {
+    "count": 3,
+    "unitOfMeasure": "days"
+  },
+  "price": 1.40,
+  "pricePerUnit": {
+    "price": 17.5,
+    "numeric": 100,
+    "unitOfMeasure": "gram"
+  },
+  "rating": 3.5,
+  "dietaryIcons": ["suitable-for-freezing", "vegan"],
+  "stockQuantity": 10
+}
