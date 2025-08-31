@@ -1,52 +1,14 @@
 import {Button, Card, Image, Separator, Stack, Text} from "@chakra-ui/react";
+import type { Product } from "./Products.tsx";
 
-interface MeasureProps {
-    typeOfMeasure: string;
-    count: number;
-    unitOfMeasure: string;
+type ProductCardProps = {
+    product: Product;
 }
 
-interface ShelfLifeProps {
-    count: number;
-    unitOfMeasure: string;
-}
-
-interface PricePerUnitProps {
-    price: number;
-    numeric: number;
-    unitOfMeasure: string;
-}
-
-interface ProductProps {
-    name: string;
-    image: string;
-    categoryPath: string;
-    measure: MeasureProps;
-    shelfLife: ShelfLifeProps;
-    price: number;
-    pricePerUnit: PricePerUnitProps;
-    rating: number;
-    dietaryIcons: string[];
-    stockQuantity: number;
-}
-
-interface Product {
-    product: ProductProps;
-}
-
-const ProductCard = ({ product }: Product) => {
-    const {
-        name,
-        image,
-        categoryPath,
-        measure,
-        shelfLife,
-        price,
-        pricePerUnit,
-        rating,
-        dietaryIcons,
-        stockQuantity
-    } = product;
+const ProductCard = ({ product }: ProductCardProps) => {
+   const {
+       name, image, category, measure, shelfLife, price, pricePerUnit, rating, dietaryIcons, stockCount
+   } = product;
     return (
         <div className="product">
             <Card.Root variant="elevated" width="320px">
@@ -56,19 +18,19 @@ const ProductCard = ({ product }: Product) => {
                     <Stack>
                         <Text fontWeight="medium" letterSpacing="tight" mt="2">{`Price: £ ${Number(price).toFixed(2)}`}
                         </Text>
-                        <Text>category: {categoryPath}</Text>
+                        <Text>category: {category}</Text>
                         <Separator />
-                        <Text>{`${measure.typeOfMeasure}: ${measure.count} ${measure.unitOfMeasure}`}</Text>
+                        <Text>{`${measure.measureType}: ${measure.measureCount} ${measure.unitOfMeasure}`}</Text>
                         <Separator />
-                        <Text>{`Shelf life: ${shelfLife.count} ${shelfLife.unitOfMeasure}`}</Text>
+                        <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
                         <Separator />
-                        <Text>{`Price per unit: ${pricePerUnit.price} per ${pricePerUnit.numeric} ${pricePerUnit.unitOfMeasure}`}</Text>
+                        <Text>{`Price per unit: ${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
                         <Separator />
                         <Text>{`Rating: ${rating}`}</Text>
                         <Separator />
                         <Text>{dietaryIcons.map((value) => `${value}, `)}</Text>
                         <Separator />
-                        <Text>{`Number of units in stock: ${stockQuantity}`}</Text>
+                        <Text>{`Number of units in stock: ${stockCount}`}</Text>
                     </Stack>
                 </Card.Body>
                 <Card.Footer justifyContent="flex-end">
