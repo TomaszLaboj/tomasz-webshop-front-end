@@ -34,7 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     </Stack>
                 </Card.Body>
                 <Card.Footer justifyContent="flex-end">
-                    <Button variant="solid" colorPalette="green" size="xl">Add to basket</Button>
+                    {stockCount && stockCount > 0 ? <Button variant="solid" colorPalette="green" size="xl">Add to basket</Button> : <Button disabled>Out of stock</Button>}
                 </Card.Footer>
             </Card.Root>
         </div>
