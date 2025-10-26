@@ -3,9 +3,22 @@
     margin: 20px;
     display: flex;
     flex-wrap: wrap;
+    font-size: 14px;
 }
 
 .product {
     margin: 10px;
     padding: 10px;
+    padding: 8px;
+}
+
+.product-image {
+    height: 10rem;
+    align-content: center;
+}
+
+.product-category {
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: ellipsis;
 }
