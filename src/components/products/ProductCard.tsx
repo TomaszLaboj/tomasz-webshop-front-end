@@ -21,7 +21,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     <Stack gap={'61'}>
                         <Text fontWeight="medium" letterSpacing="tight" mt="2">{`Price: £ ${Number(price).toFixed(2)}`}
                         </Text>
-                        <Text className={"product-category"}>category: {category}</Text>
+                        <div className={"product-category"}>
+                            <Text className={"product-category"}>category:</Text>
+                            <Text>{category}</Text>
+                        </div>
                         <Text>{`${measure.measureType}: ${measure.measureCount} ${measure.unitOfMeasure}`}</Text>
                         <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
                         <Text>{`Price per unit: ${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
