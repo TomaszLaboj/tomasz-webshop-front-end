@@ -9,6 +9,7 @@
 .product {
     margin: 10px;
     padding: 8px;
+    display: flex;
 }
 
 .product-image {
@@ -18,7 +19,7 @@
 
 .product-category {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-    white-space: nowrap;
+    gap:  8px;
+    /*inline-size: 150px;*/
+    overflow-wrap: break-word;
 }

@@ -15,16 +15,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Card.Root variant="elevated" width="320px">
                 <Card.Body gap="2">
                     <div>
-                        <Image src={image} className={"product-image"} />
+                        <Image src={image} className="product-image" />
                     </div>
                     <Card.Title mt="2">{name}</Card.Title>
                     <Stack gap={'61'}>
                         <Text fontWeight="medium" letterSpacing="tight" mt="2">{`Price: £ ${Number(price).toFixed(2)}`}
                         </Text>
-                        <div className={"product-category"}>
-                            <Text className={"product-category"}>category:</Text>
+                        <span className="product-category">
+                            <Text>category:</Text>
                             <Text>{category}</Text>
-                        </div>
+                        </span>
                         <Text>{`${measure.measureType}: ${measure.measureCount} ${measure.unitOfMeasure}`}</Text>
                         <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
                         <Text>{`Price per unit: ${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
