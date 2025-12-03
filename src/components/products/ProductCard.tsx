@@ -1,21 +1,21 @@
 import {Button, Card, Image, Stack, Text} from "@chakra-ui/react";
-import type { Product } from "./Products.tsx";
+import type {Product} from "./Products.tsx";
 import './Products.css';
 
 type ProductCardProps = {
     product: Product;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
-   const {
-       name, image, category, measure, shelfLife, price, pricePerUnit, rating, dietaryIcons, stockCount
-   } = product;
+const ProductCard = ({product}: ProductCardProps) => {
+    const {
+        name, image, category, measure, shelfLife, price, pricePerUnit, rating, dietaryIcons, stockCount
+    } = product;
     return (
         <div className="product">
             <Card.Root variant="elevated" width="320px">
                 <Card.Body gap="2">
                     <div>
-                        <Image src={image} className="product-image" />
+                        <Image src={image} className="product-image"/>
                     </div>
                     <Card.Title mt="2">{name}</Card.Title>
                     <Stack gap={'61'}>
@@ -23,7 +23,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                         </Text>
                         <span className="product-category">
                             <Text>category:</Text>
-                            <Text>{category}</Text>
+                            <Text>{category.categoryName}</Text>
                         </span>
                         <Text>{`${measure.measureType}: ${measure.measureCount} ${measure.unitOfMeasure}`}</Text>
                         <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
@@ -34,7 +34,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
                     </Stack>
                 </Card.Body>
                 <Card.Footer justifyContent="flex-end">
-                    {stockCount && stockCount > 0 ? <Button variant="solid" colorPalette="green" size="xs">Add to basket</Button> : <Button disabled size="xs">Out of stock</Button>}
+                    {stockCount && stockCount > 0 ?
+                        <Button variant="solid" colorPalette="green" size="xs">Add to basket</Button> :
+                        <Button disabled size="xs">Out of stock</Button>}
                 </Card.Footer>
             </Card.Root>
         </div>

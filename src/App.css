@@ -13,6 +13,21 @@
 }
 
 .basket-button {
-    padding: 20px; !important;
+    padding: 20px;
+!important;
     background: rgb(234, 88, 12);
+}
+
+.main-grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 16rem;
+    padding: 16px;
+}
+
+.link {
+    line-break: anywhere;
 }

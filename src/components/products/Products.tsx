@@ -20,11 +20,16 @@ export interface PricePerUnitProps {
     unitOfMeasure: string;
 }
 
+export interface Category {
+    categoryId: number;
+    categoryName: string;
+}
+
 export interface Product {
     id: number,
     name: string,
     image: string,
-    category: string,
+    category: Category,
     measure: MeasureProps,
     shelfLife: ShelfLifeProps,
     price: number,
@@ -36,6 +41,11 @@ export interface Product {
 }
 
 const fetchProducts = async () => {
+    const url = window.location.href;
+    let params = new URLSearchParams(document.location.search);
+    let name = params.get("categoryId");
+    console.log(name);
+    console.log(url);
     const response = await fetch("http://localhost:8080/products");
     if (response.ok) {
         return response.json();
@@ -53,7 +63,6 @@ const Products = () => {
         }
         getProducts().then((data) => setProducts(data));
     }, [])
-    console.log(products[0]);
 
     return (
         <>

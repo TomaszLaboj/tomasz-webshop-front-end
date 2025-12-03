@@ -1,28 +1,18 @@
-import {Button, IconButton, Image} from "@chakra-ui/react"
-import {LuSearch, LuShoppingBasket} from 'react-icons/lu'
 import './App.css'
-import SearchBar from "./components/SearchBar";
 import Products from "./components/products/Products";
-import logoImage from "./assets/logo.png"
+import MainAppBar from "./components/mainAppBar/MainAppBar.tsx";
+import Categories from "./components/categories/Categories.tsx";
 
 function App() {
-  return (
-      <>
-        <span className={"top-bar"}>
-            <Image src={logoImage} className={'logo'}></Image>
-            <SearchBar />
-            <IconButton aria-label='Search database' colorPalette='orange'>
-                <LuSearch />
-            </IconButton>
-            <Button background={'rgb(234, 88, 12)'} padding='2'>Your acccount</Button>
-            <IconButton className={'basket-button'} padding='2'>
-                Basket
-                <LuShoppingBasket />
-            </IconButton>
-        </span>
-        <Products />
-      </>
-  )
+    return (
+        <>
+            <MainAppBar/>
+            <div className="main-grid">
+                <Categories/>
+                <Products/>
+            </div>
+        </>
+    )
 }
 
 export default App
