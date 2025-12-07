@@ -29,7 +29,7 @@ const ProductCard = ({product}: ProductCardProps) => {
                         <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
                         <Text>{`Price per unit: ${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
                         <Text>{`Rating: ${rating}`}</Text>
-                        <Text>{dietaryIcons.map((value) => `${value}, `)}</Text>
+                        <Text>{dietaryIcons && dietaryIcons.map((value) => `${value}, `)}</Text>
                         <Text>{`Number of units in stock: ${stockCount}`}</Text>
                     </Stack>
                 </Card.Body>

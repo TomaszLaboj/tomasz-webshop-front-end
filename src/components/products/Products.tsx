@@ -1,6 +1,4 @@
-// import ProductCard from "./ProductCard";
 import "./Products.css";
-import {useEffect, useState} from "react";
 import ProductCard from "./ProductCard";
 
 export interface MeasureProps {
@@ -40,29 +38,12 @@ export interface Product {
     product?: Product
 }
 
-const fetchProducts = async () => {
-    const url = window.location.href;
-    let params = new URLSearchParams(document.location.search);
-    let name = params.get("categoryId");
-    console.log(name);
-    console.log(url);
-    const response = await fetch("http://localhost:8080/products");
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw new Error(`Unexpected response status ${response.status}`);
-    }
+interface ProductsProps {
+    products: Product[];
 }
 
-const Products = () => {
-    const [products, setProducts] = useState<Product[]>([]);
+const Products = ({products}: ProductsProps) => {
 
-    useEffect(() => {
-        const getProducts = async () => {
-            return await fetchProducts();
-        }
-        getProducts().then((data) => setProducts(data));
-    }, [])
 
     return (
         <>

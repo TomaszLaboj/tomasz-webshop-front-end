@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Link} from "@chakra-ui/react"
+import {Button} from "@chakra-ui/react"
 
 const fetchCategories = async () => {
     const response = await fetch("http://localhost:8080/categories");
@@ -15,7 +15,11 @@ interface Category {
     categoryName: string;
 }
 
-const Categories = () => {
+interface CategoriesProps {
+    getProductsFromCategory: (id: string) => void;
+}
+
+const Categories = ({getProductsFromCategory}: CategoriesProps) => {
     const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
         const getCategories = async () => {
@@ -23,12 +27,25 @@ const Categories = () => {
         }
         getCategories().then((data) => setCategories(data));
     }, [])
+
+
     return (
         <div className='sidebar'>
             <ul>
+                <Button
+                    variant='plain'
+                    onClick={() => getProductsFromCategory('all')}
+                >
+                    All categories
+                </Button>
                 {categories.map((category) => (
                     <div className='link' key={category.categoryId}>
-                        <Link>{category.categoryName}</Link>
+                        <Button
+                            variant='plain'
+                            onClick={() => getProductsFromCategory(category.categoryId)}
+                        >
+                            {category.categoryName}
+                        </Button>
                     </div>
                 ))}
 
