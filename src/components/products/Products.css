@@ -19,7 +19,44 @@
 
 .product-category {
     display: flex;
-    gap:  8px;
+    gap: 8px;
     /*inline-size: 150px;*/
     overflow-wrap: break-word;
+}
+
+.star-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.star {
+    width: 18px;
+    margin-right: 2px;
+    display: flex;
+    color: #f8d448;
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+}
+
+.star-overlay {
+    background-color: black;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    @supports (mix-blend-mode: color) {
+        mix-blend-mode: color;
+        opacity: unset;
+    }
+}
+
+.rating-div {
+    display: flex;
+
 }

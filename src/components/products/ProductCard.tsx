@@ -1,15 +1,23 @@
 import {Button, Card, Image, Stack, Text} from "@chakra-ui/react";
 import type {Product} from "./Products.tsx";
+import Rating from "./components/Rating.tsx";
 import './Products.css';
 
 type ProductCardProps = {
     product: Product;
 }
 
+const MeasureType = {
+    WEIGHT: "Weight",
+    VOLUME: "Volume",
+    ITEM: "Quantity",
+}
+
 const ProductCard = ({product}: ProductCardProps) => {
     const {
         name, image, category, measure, shelfLife, price, pricePerUnit, rating, dietaryIcons, stockCount
     } = product;
+    const measureType = MeasureType[measure.measureType as keyof typeof MeasureType];
     return (
         <div className="product">
             <Card.Root variant="elevated" width="320px">
@@ -25,10 +33,12 @@ const ProductCard = ({product}: ProductCardProps) => {
                             <Text>category:</Text>
                             <Text>{category.categoryName}</Text>
                         </span>
-                        <Text>{`${measure.measureType}: ${measure.measureCount} ${measure.unitOfMeasure}`}</Text>
+                        <Text>{`${measureType}: ${measure.measureCount} ${measureType == MeasureType.ITEM ? 'items' : measure.unitOfMeasure}`}</Text>
+                        <Text>{`Price per unit: £${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
                         <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
-                        <Text>{`Price per unit: ${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
-                        <Text>{`Rating: ${rating}`}</Text>
+                        <div className='rating-div'>
+                            <Text>Rating: </Text>{<Rating rating={rating}/>}
+                        </div>
                         <Text>{dietaryIcons && dietaryIcons.map((value) => `${value}, `)}</Text>
                         <Text>{`Number of units in stock: ${stockCount}`}</Text>
                     </Stack>

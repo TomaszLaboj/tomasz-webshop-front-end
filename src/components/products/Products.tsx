@@ -2,6 +2,7 @@ import "./Products.css";
 import ProductCard from "./ProductCard";
 
 export interface MeasureProps {
+    numberOfItemsInPack: number;
     measureType: string;
     measureCount: number;
     unitOfMeasure: string;
