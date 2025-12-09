@@ -17,7 +17,12 @@ const ProductCard = ({product}: ProductCardProps) => {
     const {
         name, image, category, measure, shelfLife, price, pricePerUnit, rating, dietaryIcons, stockCount
     } = product;
+    const {numberOfItemsInPack} = measure;
     const measureType = MeasureType[measure.measureType as keyof typeof MeasureType];
+    const measureCountInfo = `${measure.measureCount} ${
+        measureType == MeasureType.ITEM
+            ? 'items'
+            : measure.unitOfMeasure}`
     return (
         <div className="product">
             <Card.Root variant="elevated" width="320px">
@@ -28,22 +33,19 @@ const ProductCard = ({product}: ProductCardProps) => {
                     <Card.Title mt="2">
                         {name}
                     </Card.Title>
+                    <Text>{numberOfItemsInPack > 1 && `${numberOfItemsInPack} x ${measureCountInfo}`}</Text>
                     <Stack gap={'61'}>
                         <Text fontWeight="medium" letterSpacing="tight" mt="2">
                             {`Price: £ ${Number(price).toFixed(2)}`}
                         </Text>
                         <span className="product-category">
                             <Text>
-                                Category:
-                            </Text>
-                            <Text>
-                                {category.categoryName}
+                                Category: {category.categoryName}
                             </Text>
                         </span>
                         <Text>
-                            {`${measureType}: ${measure.measureCount} ${measureType == MeasureType.ITEM
-                                ? 'items'
-                                : measure.unitOfMeasure}`}
+                            {`${measureType}: ${measureCountInfo}`}
+
                         </Text>
                         <Text>
                             {`Price per unit: £${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}
