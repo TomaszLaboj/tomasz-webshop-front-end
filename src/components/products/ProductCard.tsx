@@ -25,22 +25,44 @@ const ProductCard = ({product}: ProductCardProps) => {
                     <div>
                         <Image src={image} className="product-image"/>
                     </div>
-                    <Card.Title mt="2">{name}</Card.Title>
+                    <Card.Title mt="2">
+                        {name}
+                    </Card.Title>
                     <Stack gap={'61'}>
-                        <Text fontWeight="medium" letterSpacing="tight" mt="2">{`Price: £ ${Number(price).toFixed(2)}`}
+                        <Text fontWeight="medium" letterSpacing="tight" mt="2">
+                            {`Price: £ ${Number(price).toFixed(2)}`}
                         </Text>
                         <span className="product-category">
-                            <Text>category:</Text>
-                            <Text>{category.categoryName}</Text>
+                            <Text>
+                                Category:
+                            </Text>
+                            <Text>
+                                {category.categoryName}
+                            </Text>
                         </span>
-                        <Text>{`${measureType}: ${measure.measureCount} ${measureType == MeasureType.ITEM ? 'items' : measure.unitOfMeasure}`}</Text>
-                        <Text>{`Price per unit: £${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}</Text>
-                        <Text>{`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}</Text>
+                        <Text>
+                            {`${measureType}: ${measure.measureCount} ${measureType == MeasureType.ITEM
+                                ? 'items'
+                                : measure.unitOfMeasure}`}
+                        </Text>
+                        <Text>
+                            {`Price per unit: £${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}
+                        </Text>
+                        <Text>
+                            {`Shelf life: ${shelfLife.shelfLifeCount} ${shelfLife.shelfLifeUnit}`}
+                        </Text>
                         <div className='rating-div'>
-                            <Text>Rating: </Text>{<Rating rating={rating}/>}
+                            <Text>
+                                Rating:
+                            </Text>
+                            <Rating rating={rating}/>
                         </div>
-                        <Text>{dietaryIcons && dietaryIcons.map((value) => `${value}, `)}</Text>
-                        <Text>{`Number of units in stock: ${stockCount}`}</Text>
+                        <Text>
+                            {dietaryIcons && dietaryIcons.map((value) => `${value}, `)}
+                        </Text>
+                        <Text>
+                            {`Number of units in stock: ${stockCount}`}
+                        </Text>
                     </Stack>
                 </Card.Body>
                 <Card.Footer justifyContent="flex-end">
