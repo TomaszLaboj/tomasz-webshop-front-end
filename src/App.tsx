@@ -1,8 +1,8 @@
 import './App.css'
 import Products, {type Product} from "./components/products/Products";
 import MainAppBar from "./components/mainAppBar/MainAppBar.tsx";
-import Categories from "./components/categories/Categories.tsx";
 import {useEffect, useState} from "react";
+import CategoriesTree from "./components/categories/CategoriesTree.tsx";
 
 const fetchProducts = async () => {
     const params = new URLSearchParams(window.location.search);
@@ -44,9 +44,7 @@ function App() {
         <>
             <MainAppBar/>
             <div className="main-grid">
-                <Categories
-                    getProductsFromCategory={getProductsFromCategory}
-                />
+                <CategoriesTree getProductsFromCategory={getProductsFromCategory}/>
                 <Products
                     products={products}
                 />
