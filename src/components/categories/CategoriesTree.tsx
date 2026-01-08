@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {Button} from "@chakra-ui/react"
-import type {Category} from "./Categories.tsx";
+import {Button} from "@chakra-ui/react";
+import Category from './Category.tsx'
 
 const fetchCategories = async () => {
     const response = await fetch("http://localhost:8080/categories-tree");
@@ -11,23 +11,24 @@ const fetchCategories = async () => {
     }
 }
 
-interface CategoriesProps {
+export interface CategoryType {
+    categoryId: string;
+    categoryName: string;
+    subcategories: CategoryType[];
+}
+
+export interface CategoriesProps {
     getProductsFromCategory: (id: string) => void;
 }
 
-interface CategoryWithSubcategories extends Category {
-    subcategories: Category[];
-}
-
-const Categories = ({getProductsFromCategory}: CategoriesProps) => {
-    const [categories, setCategories] = useState<CategoryWithSubcategories[]>([]);
+const CategoriesTree = ({getProductsFromCategory}: CategoriesProps) => {
+    const [categories, setCategories] = useState<CategoryType[]>([]);
     useEffect(() => {
         const getCategories = async () => {
             return await fetchCategories();
         }
         getCategories().then((data) => setCategories(data));
     }, [])
-
 
     return (
         <div className='categories-sidebar'>
@@ -39,29 +40,10 @@ const Categories = ({getProductsFromCategory}: CategoriesProps) => {
                     All categories
                 </Button>
                 {categories.map((category) => (
-                    <div className='link subcategories-wrapper' key={category.categoryId}>
-                        <Button
-                            variant='plain'
-                            onClick={() => getProductsFromCategory(category.categoryId)}
-                        >
-                            {category.categoryName}
-                        </Button>
-                        {category.subcategories.length > 0 && (
-                            <div className='hide'>
-                                {category.subcategories.map((subcategory) => (
-                                    <div className='link' key={subcategory.categoryId}>
-
-                                        <Button
-                                            variant='plain'
-                                            onClick={() => getProductsFromCategory(subcategory.categoryId)}
-                                        >
-                                            {subcategory.categoryName}
-                                        </Button>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <Category
+                        category={category}
+                        getProductsFromCategory={getProductsFromCategory}
+                    />
                 ))}
 
             </ul>
@@ -69,4 +51,4 @@ const Categories = ({getProductsFromCategory}: CategoriesProps) => {
     )
 };
 
-export default Categories;
+export default CategoriesTree;
