@@ -1,5 +1,7 @@
 import "./Products.css";
 import ProductCard from "./ProductCard";
+import {useEffect, useState} from "react";
+import {fetchProducts} from "../requests/requests.ts";
 
 export interface MeasureProps {
     numberOfItemsInPack: number;
@@ -39,11 +41,20 @@ export interface Product {
     product?: Product
 }
 
-interface ProductsProps {
-    products: Product[];
-}
+// interface ProductsProps {
+//     products: Product[];
+//     getProductsFromCategory: (id: string) => void;
+// }
 
-const Products = ({products}: ProductsProps) => {
+const Products = () => {
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        const getProducts = async () => {
+            return await fetchProducts();
+        }
+        getProducts().then((data) => setProducts(data));
+    }, [])
 
 
     return (
