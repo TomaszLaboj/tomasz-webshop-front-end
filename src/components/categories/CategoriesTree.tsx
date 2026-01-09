@@ -1,15 +1,7 @@
 import {useEffect, useState} from "react";
 import {Button} from "@chakra-ui/react";
 import Category from './Category.tsx'
-
-const fetchCategories = async () => {
-    const response = await fetch("http://localhost:8080/categories-tree");
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw new Error(`Unexpected response status ${response.status}`);
-    }
-}
+import {fetchCategories} from "./requests/requests.ts";
 
 export interface CategoryType {
     categoryId: string;
