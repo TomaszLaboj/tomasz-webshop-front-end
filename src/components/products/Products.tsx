@@ -41,20 +41,19 @@ export interface Product {
     product?: Product
 }
 
-// interface ProductsProps {
-//     products: Product[];
-//     getProductsFromCategory: (id: string) => void;
-// }
+interface ProductsProps {
+    categoryId: string
+}
 
-const Products = () => {
+const Products = ({categoryId}: ProductsProps) => {
     const [products, setProducts] = useState<Product[]>([]);
-
+   
     useEffect(() => {
         const getProducts = async () => {
-            return await fetchProducts();
+            return await fetchProducts(categoryId);
         }
         getProducts().then((data) => setProducts(data));
-    }, [])
+    }, [categoryId])
 
 
     return (

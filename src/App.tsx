@@ -2,18 +2,20 @@ import './App.css'
 import Products from "./components/products/Products";
 import MainAppBar from "./components/mainAppBar/MainAppBar.tsx";
 import CategoriesTree from "./components/categories/CategoriesTree.tsx";
+import {useState} from "react";
 
 
 function App() {
-
+    const [categoryId, setCategoryId] = useState('0');
+    
     const getProductsFromCategory = (categoryId: string) => {
-        const url = new URL(window.location.href);
+
         if (categoryId === 'all') {
-            url.searchParams.delete("categoryId");
+            setCategoryId('0')
         } else {
-            url.searchParams.set("categoryId", categoryId);
+            setCategoryId(categoryId);
         }
-        window.location.href = url.toString();
+
     }
 
     return (
@@ -21,7 +23,9 @@ function App() {
             <MainAppBar/>
             <div className="main-grid">
                 <CategoriesTree getProductsFromCategory={getProductsFromCategory}/>
-                <Products/>
+                <Products
+                    categoryId={categoryId}
+                />
             </div>
         </>
     )
