@@ -33,6 +33,7 @@ const CategoriesTree = ({getProductsFromCategory}: CategoriesProps) => {
                 </Button>
                 {categories.map((category) => (
                     <Category
+                        key={category.categoryId}
                         category={category}
                         getProductsFromCategory={getProductsFromCategory}
                     />

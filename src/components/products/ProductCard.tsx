@@ -45,7 +45,6 @@ const ProductCard = ({product}: ProductCardProps) => {
                         </span>
                         <Text>
                             {`${measureType}: ${measureCountInfo}`}
-
                         </Text>
                         <Text>
                             {`Price per unit: £${pricePerUnit.pricePerUnit} per ${pricePerUnit.unitCount} ${pricePerUnit.unitOfMeasure}`}
